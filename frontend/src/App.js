@@ -514,13 +514,22 @@ function App() {
       const speed = 50;
       const turnSpeed = 3;
       
+      // Get forward direction from quaternion
+      const getForwardVector = (quat) => {
+        const forward = new CANNON.Vec3(0, 0, -1);
+        quat.vmult(forward, forward);
+        forward.y = 0; // Keep on ground plane
+        forward.normalize();
+        return forward;
+      };
+      
       if (keys['w'] || keys['arrowup']) {
-        const forward = new CANNON.Vec3(-Math.sin(carBodyPhysics.quaternion.toEuler().y), 0, -Math.cos(carBodyPhysics.quaternion.toEuler().y));
+        const forward = getForwardVector(carBodyPhysics.quaternion);
         carBodyPhysics.applyForce(new CANNON.Vec3(forward.x * speed, 0, forward.z * speed), carBodyPhysics.position);
       }
       if (keys['s'] || keys['arrowdown']) {
-        const backward = new CANNON.Vec3(Math.sin(carBodyPhysics.quaternion.toEuler().y), 0, Math.cos(carBodyPhysics.quaternion.toEuler().y));
-        carBodyPhysics.applyForce(new CANNON.Vec3(backward.x * speed, 0, backward.z * speed), carBodyPhysics.position);
+        const forward = getForwardVector(carBodyPhysics.quaternion);
+        carBodyPhysics.applyForce(new CANNON.Vec3(-forward.x * speed, 0, -forward.z * speed), carBodyPhysics.position);
       }
       if (keys['a'] || keys['arrowleft']) {
         carBodyPhysics.angularVelocity.y = turnSpeed;
@@ -531,7 +540,7 @@ function App() {
       
       // Boost
       if (keys[' '] && currentBoost > 0) {
-        const forward = new CANNON.Vec3(-Math.sin(carBodyPhysics.quaternion.toEuler().y), 0, -Math.cos(carBodyPhysics.quaternion.toEuler().y));
+        const forward = getForwardVector(carBodyPhysics.quaternion);
         carBodyPhysics.applyForce(new CANNON.Vec3(forward.x * speed * 3, 0, forward.z * speed * 3), carBodyPhysics.position);
         currentBoost -= 0.5;
         setBoost(Math.max(0, currentBoost));
