@@ -787,6 +787,72 @@ function App() {
               <p>WASD / Arrows - Move | Space - Boost</p>
             </div>
           </div>
+
+          {/* Mobile Controls */}
+          <div className="mobile-controls" data-testid="mobile-controls">
+            {/* Left Joystick */}
+            <div className="joystick-container">
+              <div className="joystick-base">
+                <div className="joystick-stick"></div>
+              </div>
+              <div className="joystick-directions">
+                <button 
+                  className="direction-btn up" 
+                  data-testid="mobile-up"
+                  onTouchStart={() => { keys['w'] = true; }}
+                  onTouchEnd={() => { keys['w'] = false; }}
+                >
+                  <span>↑</span>
+                </button>
+                <button 
+                  className="direction-btn down" 
+                  data-testid="mobile-down"
+                  onTouchStart={() => { keys['s'] = true; }}
+                  onTouchEnd={() => { keys['s'] = false; }}
+                >
+                  <span>↓</span>
+                </button>
+                <button 
+                  className="direction-btn left" 
+                  data-testid="mobile-left"
+                  onTouchStart={() => { keys['a'] = true; }}
+                  onTouchEnd={() => { keys['a'] = false; }}
+                >
+                  <span>←</span>
+                </button>
+                <button 
+                  className="direction-btn right" 
+                  data-testid="mobile-right"
+                  onTouchStart={() => { keys['d'] = true; }}
+                  onTouchEnd={() => { keys['d'] = false; }}
+                >
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Right Action Buttons */}
+            <div className="action-buttons">
+              <button 
+                className="action-btn boost-btn" 
+                data-testid="mobile-boost"
+                onTouchStart={() => { keys[' '] = true; }}
+                onTouchEnd={() => { keys[' '] = false; }}
+              >
+                <span className="btn-icon">⚡</span>
+                <span className="btn-label">BOOST</span>
+              </button>
+              <button 
+                className="action-btn brake-btn" 
+                data-testid="mobile-brake"
+                onTouchStart={() => { keys['s'] = true; }}
+                onTouchEnd={() => { keys['s'] = false; }}
+              >
+                <span className="btn-icon">🛑</span>
+                <span className="btn-label">BRAKE</span>
+              </button>
+            </div>
+          </div>
         </>
       )}
     </div>
