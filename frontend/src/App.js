@@ -643,6 +643,8 @@ function App() {
         cancelAnimationFrame(animationId);
         clearInterval(timerInterval);
         window.removeEventListener('resize', handleResize);
+        window.removeEventListener('keydown', handleKeyDown);
+        window.removeEventListener('keyup', handleKeyUp);
         renderer.dispose();
       }
     };
