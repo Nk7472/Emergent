@@ -406,10 +406,17 @@ function App() {
     createWall(1, 10, 60, -50, 5, 0);
     createWall(1, 10, 60, 50, 5, 0);
 
-    // Controls
-    const keys = {};
-    window.addEventListener('keydown', (e) => { keys[e.key.toLowerCase()] = true; });
-    window.addEventListener('keyup', (e) => { keys[e.key.toLowerCase()] = false; });
+    // Controls - make keys object accessible
+    if (!window.gameKeys) {
+      window.gameKeys = {};
+    }
+    const keys = window.gameKeys;
+    
+    const handleKeyDown = (e) => { keys[e.key.toLowerCase()] = true; };
+    const handleKeyUp = (e) => { keys[e.key.toLowerCase()] = false; };
+    
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
 
     // Mobile touch controls
     let touchStartX = 0;
