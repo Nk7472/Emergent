@@ -801,39 +801,36 @@ function App() {
           <div className="mobile-controls" data-testid="mobile-controls">
             {/* Left Joystick */}
             <div className="joystick-container">
-              <div className="joystick-base">
-                <div className="joystick-stick"></div>
-              </div>
               <div className="joystick-directions">
                 <button 
                   className="direction-btn up" 
                   data-testid="mobile-up"
-                  onTouchStart={() => { keys['w'] = true; }}
-                  onTouchEnd={() => { keys['w'] = false; }}
+                  onTouchStart={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['w'] = true; }}
+                  onTouchEnd={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['w'] = false; }}
                 >
                   <span>↑</span>
                 </button>
                 <button 
                   className="direction-btn down" 
                   data-testid="mobile-down"
-                  onTouchStart={() => { keys['s'] = true; }}
-                  onTouchEnd={() => { keys['s'] = false; }}
+                  onTouchStart={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['s'] = true; }}
+                  onTouchEnd={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['s'] = false; }}
                 >
                   <span>↓</span>
                 </button>
                 <button 
                   className="direction-btn left" 
                   data-testid="mobile-left"
-                  onTouchStart={() => { keys['a'] = true; }}
-                  onTouchEnd={() => { keys['a'] = false; }}
+                  onTouchStart={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['a'] = true; }}
+                  onTouchEnd={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['a'] = false; }}
                 >
                   <span>←</span>
                 </button>
                 <button 
                   className="direction-btn right" 
                   data-testid="mobile-right"
-                  onTouchStart={() => { keys['d'] = true; }}
-                  onTouchEnd={() => { keys['d'] = false; }}
+                  onTouchStart={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['d'] = true; }}
+                  onTouchEnd={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['d'] = false; }}
                 >
                   <span>→</span>
                 </button>
@@ -845,8 +842,8 @@ function App() {
               <button 
                 className="action-btn boost-btn" 
                 data-testid="mobile-boost"
-                onTouchStart={() => { keys[' '] = true; }}
-                onTouchEnd={() => { keys[' '] = false; }}
+                onTouchStart={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys[' '] = true; }}
+                onTouchEnd={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys[' '] = false; }}
               >
                 <span className="btn-icon">⚡</span>
                 <span className="btn-label">BOOST</span>
@@ -854,8 +851,8 @@ function App() {
               <button 
                 className="action-btn brake-btn" 
                 data-testid="mobile-brake"
-                onTouchStart={() => { keys['s'] = true; }}
-                onTouchEnd={() => { keys['s'] = false; }}
+                onTouchStart={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['s'] = true; }}
+                onTouchEnd={(e) => { e.preventDefault(); if (window.gameKeys) window.gameKeys['s'] = false; }}
               >
                 <span className="btn-icon">🛑</span>
                 <span className="btn-label">BRAKE</span>
